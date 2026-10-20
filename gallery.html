@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><title>Gallery – Nova M&A Club</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body data-page="gallery"><header id="hdr"></header><main>
+<section class="wrap"><p class="eyebrow">Photographs</p><h1>Gallery</h1><div id="g"></div></section>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Enlarged photo"><button aria-label="Close">×</button><img alt=""></div>
+</main><footer id="ftr"></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="config.js"></script><script src="common.js"></script>
+<script>(async()=>{const el=$("#g"),lb=$("#lb");
+const close=()=>lb.classList.remove("on");lb.onclick=close;document.onkeydown=e=>e.key==="Escape"&&close();
+if(!sb){el.innerHTML='<div class="err">Backend not configured (see config.js).</div>';return}
+const {data,error}=await sb.from("gallery_images").select("*").order("sort_order");
+if(error){el.innerHTML='<div class="err">Could not load photos.</div>';return}
+if(!data.length){el.innerHTML='<div class="empty">No photographs have been uploaded yet.</div>';return}
+el.className="gal";el.innerHTML=data.map((p,i)=>`<figure><button data-i="${i}" aria-label="Enlarge: ${esc(p.caption||"photo")}"><img loading="lazy" src="${pub("gallery",p.file_path)}" alt="${esc(p.caption||"Club photograph")}"></button>${p.caption?`<figcaption>${esc(p.caption)}</figcaption>`:""}</figure>`).join("");
+el.onclick=e=>{const b=e.target.closest("button");if(!b)return;const p=data[b.dataset.i];$("#lb img").src=pub("gallery",p.file_path);$("#lb img").alt=p.caption||"";lb.classList.add("on")}})()</script></body></html>

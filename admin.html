@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><title>Admin – Nova M&A Club</title><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body data-page="admin"><header id="hdr"></header><main>
+<section class="wrap" style="max-width:860px"><h1>Admin</h1><p id="msg" role="alert"></p><div id="app"></div></section>
+</main><footer id="ftr"></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="config.js"></script><script src="common.js"></script>
+<script>
+const msg=(t,ok)=>{const m=$("#msg");m.textContent=t||"";m.style.color=ok?"#1a7f37":"#b3261e"};
+const app=$("#app");
+async function boot(){if(!sb)return msg("Fill in config.js first.");const {data:{session}}=await sb.auth.getSession();
+ if(!session)return login();const {data:ok}=await sb.rpc("is_admin");if(!ok){await sb.auth.signOut();login();return msg("This account is not an administrator.")}panel()}
+function login(){app.innerHTML=`<form id="lf" class="card"><label>Email<input name="e" type="email" required autocomplete="username"></label><label>Password<input name="p" type="password" required autocomplete="current-password"></label><p><button class="btn">Sign in</button></p></form>`;
+ $("#lf").onsubmit=async e=>{e.preventDefault();const {error}=await sb.auth.signInWithPassword({email:e.target.e.value,password:e.target.p.value});error?msg(error.message):(msg(""),boot())}}
+function panel(){app.innerHTML=`<p><button class="btn sm" id="out">Sign out</button></p>
+<h2>Research papers</h2><form id="pf" class="card"><input type="hidden" name="id"><label>Title<input name="title" required maxlength="200"></label><label>Summary<textarea name="summary" rows="4" required></textarea></label><label>Author (optional)<input name="author"></label><label>Category (optional)<input name="category"></label><label>Publication date (optional)<input name="published_on" type="date"></label><label>File (PDF or DOCX, max 20 MB) <span id="fh" class="meta"></span><input name="file" type="file" accept=".pdf,.docx"></label><p><button class="btn">Save paper</button> <button type="button" class="btn alt" id="pc">Clear</button></p></form><div id="pl"></div>
+<h2 class="sub">Gallery</h2><div class="card"><label>Add photos (JPG, PNG, WebP, max 15 MB each)<input id="gf" type="file" accept="image/jpeg,image/png,image/webp" multiple></label><div id="pv"></div><button class="btn" id="gp" hidden>Publish selected photos</button></div><div id="gl"></div>`;
+ $("#out").onclick=async()=>{await sb.auth.signOut();login()};$("#pf").onsubmit=savePaper;$("#pc").onclick=()=>{$("#pf").reset();$("#pf").id.value="";$("#fh").textContent=""};
+ $("#gf").onchange=preview;$("#gp").onclick=publish;loadP();loadG()}
+let papers=[],imgs=[];
+async function loadP(){const {data}=await sb.from("papers").select("*").order("created_at",{ascending:false});papers=data||[];
+ $("#pl").innerHTML=papers.map(p=>`<div class="row"><div class="g"><strong>${esc(p.title)}</strong><div class="meta">${esc(p.file_name)}</div></div><button class="btn sm" data-e="${p.id}">Edit</button><button class="btn alt sm" data-d="${p.id}">Delete</button></div>`).join("")||'<p class="meta">No papers yet.</p>';
+ $("#pl").onclick=async e=>{const id=e.target.dataset.e||e.target.dataset.d,p=papers.find(x=>x.id===id);if(!p)return;
+  if(e.target.dataset.e){const f=$("#pf");["id","title","summary","author","category","published_on"].forEach(k=>f[k].value=p[k]||"");$("#fh").textContent="(leave empty to keep "+p.file_name+")";scrollTo(0,$("#pf").offsetTop)}
+  else if(confirm(`Delete "${p.title}" permanently?`)){const {error}=await sb.from("papers").delete().eq("id",id);if(error)return msg(error.message);await sb.storage.from("papers").remove([p.file_path]);msg("Deleted.",1);loadP()}}}
+async function savePaper(e){e.preventDefault();const f=e.target,id=f.id.value,file=f.file.files[0],old=papers.find(p=>p.id===id);
+ const rec={title:f.title.value.trim(),summary:f.summary.value.trim(),author:f.author.value||null,category:f.category.value||null,published_on:f.published_on.value||null};
+ if(!file&&!id)return msg("Choose a file.");
+ if(file){if(!/\.(pdf|docx)$/i.test(file.name)||file.size>20e6)return msg("PDF or DOCX only, max 20 MB.");
+  const path=crypto.randomUUID()+"/"+file.name.replace(/[^\w.\-]+/g,"_");const u=await sb.storage.from("papers").upload(path,file,{upsert:false});
+  if(u.error)return msg("Upload failed: "+u.error.message);rec.file_path=path;rec.file_name=file.name}
+ const r=id?await sb.from("papers").update(rec).eq("id",id):await sb.from("papers").insert(rec);
+ if(r.error){if(file)await sb.storage.from("papers").remove([rec.file_path]);return msg(r.error.message)}
+ if(file&&old)await sb.storage.from("papers").remove([old.file_path]);
+ f.reset();f.id.value="";$("#fh").textContent="";msg("Saved.",1);loadP()}
+async function shrink(file){const b=await createImageBitmap(file),s=Math.min(1,2000/Math.max(b.width,b.height)),c=document.createElement("canvas");c.width=b.width*s;c.height=b.height*s;c.getContext("2d").drawImage(b,0,0,c.width,c.height);return new Promise(r=>c.toBlob(r,"image/jpeg",.88))}
+function preview(e){imgs=[...e.target.files].filter(f=>/^image\/(jpeg|png|webp)$/.test(f.type)&&f.size<=15e6);
+ $("#pv").innerHTML=imgs.map((f,i)=>`<div class="row"><img src="${URL.createObjectURL(f)}" alt=""><input class="g" data-c="${i}" placeholder="Caption (optional)"></div>`).join("");$("#gp").hidden=!imgs.length}
+async function publish(){const {data:last}=await sb.from("gallery_images").select("sort_order").order("sort_order",{ascending:false}).limit(1);let n=(last?.[0]?.sort_order??0)+1;
+ for(let i=0;i<imgs.length;i++){const blob=await shrink(imgs[i]),path=crypto.randomUUID()+".jpg";
+  const u=await sb.storage.from("gallery").upload(path,blob,{contentType:"image/jpeg"});if(u.error)return msg("Upload failed: "+u.error.message);
+  const r=await sb.from("gallery_images").insert({file_path:path,caption:$(`[data-c="${i}"]`).value||null,sort_order:n++});if(r.error)return msg(r.error.message)}
+ imgs=[];$("#gf").value="";$("#pv").innerHTML="";$("#gp").hidden=true;msg("Photos published.",1);loadG()}
+let gal=[];
+async function loadG(){const {data}=await sb.from("gallery_images").select("*").order("sort_order");gal=data||[];
+ $("#gl").innerHTML=gal.map((g,i)=>`<div class="row"><img src="${pub("gallery",g.file_path)}" alt=""><input class="g" value="${esc(g.caption)}" data-cap="${g.id}" placeholder="Caption"><button class="btn sm" data-u="${i}" ${i?"":"disabled"} aria-label="Move up">↑</button><button class="btn sm" data-n="${i}" ${i<gal.length-1?"":"disabled"} aria-label="Move down">↓</button><button class="btn alt sm" data-x="${g.id}">Delete</button></div>`).join("");
+ $("#gl").onchange=async e=>{if(e.target.dataset.cap){const {error}=await sb.from("gallery_images").update({caption:e.target.value||null}).eq("id",e.target.dataset.cap);msg(error?error.message:"Caption saved.",!error)}};
+ $("#gl").onclick=async e=>{const d=e.target.dataset;
+  if(d.x){const g=gal.find(x=>x.id===d.x);if(confirm("Delete this photo permanently?")){const {error}=await sb.from("gallery_images").delete().eq("id",d.x);if(error)return msg(error.message);await sb.storage.from("gallery").remove([g.file_path]);loadG()}}
+  const i=d.u!==undefined?+d.u:d.n!==undefined?+d.n:null;if(i===null)return;const j=d.u!==undefined?i-1:i+1,a=gal[i],b=gal[j];
+  await sb.from("gallery_images").update({sort_order:b.sort_order}).eq("id",a.id);await sb.from("gallery_images").update({sort_order:a.sort_order}).eq("id",b.id);loadG()}}
+boot();</script></body></html>
