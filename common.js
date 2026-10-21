@@ -10,3 +10,10 @@ $(".burger").onclick=e=>{const o=$("nav").classList.toggle("open");e.currentTarg
 $("#ftr").innerHTML=`<div class="wrap"><strong>Nova M&amp;A Club</strong> · Nova SBE Mergers and Acquisitions Student Club<p><a href="mailto:ma.club@novasbe.pt">ma.club@novasbe.pt</a> · <a href="https://instagram.com/novamaclub" rel="noopener">@novamaclub</a> · LinkedIn: Nova M&amp;A Club</p><a href="admin.html" class="note" style="color:#9fb0d6">Admin</a></div>`;
 
 const fi=document.querySelector('link[rel=icon]');if(fi)fi.href=LOGO;
+/* Instagram + LinkedIn icons on the right */
+(()=>{
+const bar=$(".bar"),burger=$(".burger"),right=document.createElement("div");
+right.className="right";
+right.innerHTML=`<a class="soc" href="https://instagram.com/novamaclub" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a class="soc" href="https://www.linkedin.com/company/nova-mergers-acquisitions-club/home/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.82-2.05 3.75-2.05 4 0 4.74 2.63 4.74 6.05V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a>`;
+right.appendChild(burger);bar.appendChild(right);
+})();
