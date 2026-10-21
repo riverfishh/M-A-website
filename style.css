@@ -46,5 +46,6 @@ label{display:block;font-weight:600;margin:12px 0 4px}input,textarea{width:100%;
 .dark:hover{background:var(--navy)}
 nav{grid-column:1;grid-row:1;justify-self:start}
 .logo{grid-column:2;grid-row:1;justify-self:center}
-.right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px}
-.soc{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;color:var(--navy)}
+.right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px;margin-right:-40px}
+.soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--navy)}
+.soc svg{width:32px;height:32px}
