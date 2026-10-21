@@ -49,13 +49,13 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px}
 .soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--ink)}
 .soc svg{width:32px;height:32px}
-.ov{background:var(--navy);padding:40px 0}
-.ovgrid{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center}
+.ov{background:var(--navy)}
+.ovgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
 .ov h2,.ov h3,.ov .num{color:#fff}
 .ov .eyebrow,.ov p,.ov .bars span,.ov .bars b{color:#dbe3f5}
 .cells{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(255,255,255,.25);border-left:1px solid rgba(255,255,255,.25);margin:28px 0}
 .cell{padding:28px;border-right:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}
 .ov .bars i{background:#fff}
-.ovimg{border-radius:20px;overflow:hidden}
-.ovimg img{width:100%;height:16:9;display:block}
+.ovimg{aspect-ratio:3/2;border-radius:20px;overflow:hidden;background:#1a4a94}
+.ovimg img{width:100%;height:100%;object-fit:cover;display:block}
 @media(max-width:860px){.ovgrid{grid-template-columns:1fr}}
