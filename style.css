@@ -57,5 +57,5 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .cell{padding:28px;border-right:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}
 .ov .bars i{background:#fff}
 .ovimg{border-radius:20px;overflow:hidden}
-.ovimg img{width:100%;height:auto;display:block}
+.ovimg img{width:100%;height:16:9;display:block}
 @media(max-width:860px){.ovgrid{grid-template-columns:1fr}}
