@@ -6,7 +6,7 @@ h1{font-size:clamp(2.6rem,6vw,4.6rem)}h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}h3
 a{color:var(--navy)}:focus-visible{outline:3px solid #2F5BFF;outline-offset:2px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}section{padding:72px 0}
 #hdr{position:sticky;top:0;z-index:50;background:var(--bg);box-shadow:0 2px 10px rgba(0,0,0,.2)}
-.bar{max-width:1200px;margin:0 auto;padding:12px 24px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.bar{max-width:none;margin:0 auto;padding:12px 60px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
 .logo img{height:85px;width:auto;display:block}
 nav{display:flex;gap:6px}
 nav a{padding:10px 18px;border-radius:14px;color:var(--ink);font-weight:600;text-decoration:none;transition:background .2s,color .2s}
@@ -46,6 +46,6 @@ label{display:block;font-weight:600;margin:12px 0 4px}input,textarea{width:100%;
 .dark:hover{background:var(--navy)}
 nav{grid-column:1;grid-row:1;justify-self:start}
 .logo{grid-column:2;grid-row:1;justify-self:center}
-.right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px;margin-right:-40px}
-.soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--navy)}
+.right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px}
+.soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--ink)}
 .soc svg{width:32px;height:32px}
