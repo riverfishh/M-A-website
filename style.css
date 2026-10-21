@@ -50,7 +50,7 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--ink)}
 .soc svg{width:32px;height:32px}
 .ov{background:var(--navy);padding:16px 0 40px}
-.ovgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.ovgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:1400px}
 .ov h2,.ov h3,.ov .num{color:#fff}
 .ov .eyebrow,.ov p,.ov .bars span,.ov .bars b{color:#dbe3f5}
 .cells{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(255,255,255,.25);border-left:1px solid rgba(255,255,255,.25);margin:28px 0}
