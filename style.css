@@ -1,4 +1,4 @@
-:root{--bg:#F6F4EF;--navy:#00337A;--tint:#E4E8F3;--ink:#1c2740;--mut:#5b6785;--line:#dde1ea}
+:root{--bg:#FFFFFF;--navy:#00337A;--tint:#E4E8F3;--ink:#1c2740;--mut:#5b6785;--line:#dde1ea}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Open Sans",system-ui,sans-serif}
 h1,h2,h3{font-family:"Playfair Display",Georgia,serif;color:var(--navy);line-height:1.15;margin:0 0 .5em}
