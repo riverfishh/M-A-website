@@ -70,3 +70,4 @@ nav{grid-column:1;grid-row:1;justify-self:start}
   .soc{width:40px;height:40px}
   .soc svg{width:24px;height:24px}
 }
+@media(min-width:861px){.ovimg{position:relative;left:60px}}
