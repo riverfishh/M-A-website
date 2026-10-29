@@ -49,26 +49,23 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px}
 .soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--ink)}
 .soc svg{width:32px;height:32px}
-.ov{background:var(--navy);padding:16px 0 40px}
-.ovgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero{padding:0}
+.hero img{display:block;width:100%;height:auto;max-height:calc(100vh - 110px);object-fit:cover}
+.ov{background:var(--navy);padding:64px 0;position:relative;overflow:hidden}
+.ovgrid{display:block}
 .ov h2,.ov h3,.ov .num{color:#fff}
 .ov .eyebrow,.ov p,.ov .bars span,.ov .bars b{color:#dbe3f5}
-.cells{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(255,255,255,.25);border-left:1px solid rgba(255,255,255,.25);margin:28px 0}
+.cells{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.25);border-left:1px solid rgba(255,255,255,.25);margin:28px 0}
 .cell{padding:28px;border-right:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}
 .ov .bars i{background:#fff}
-.ov{position:relative;overflow:hidden}
-.ovimg{aspect-ratio:4/5;overflow:hidden;background:#1a4a94}
-.ovimg img{width:100%;height:100%;object-fit:cover;object-position:center 70%;display:block}
-@media(max-width:860px){.ovgrid{grid-template-columns:1fr}}
+.ov .bars{max-width:640px}
 @media(max-width:860px){
   html,body{overflow-x:hidden;max-width:100%}
-  .ovgrid{grid-template-columns:minmax(0,1fr)!important;gap:28px}
-  .ovgrid>*{min-width:0}
-  .ovimg{max-width:none;margin:0 -24px -40px}
+  .cells{grid-template-columns:repeat(2,1fr)}
+  .ov{padding:40px 0}
   .bar{padding:10px 16px}
   .logo img{height:56px}
   .right{margin-right:0!important}
   .soc{width:40px;height:40px}
   .soc svg{width:24px;height:24px}
 }
-@media(min-width:861px){.ovimg{position:absolute;top:0;right:0;bottom:0;width:42vw;aspect-ratio:auto}}
