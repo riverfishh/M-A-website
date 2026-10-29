@@ -52,13 +52,12 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .hero{padding:0;background:var(--navy);display:flex;justify-content:flex-end}
 .hero img{display:block;width:66.667%;height:auto}
 @media(max-width:860px){.hero img{width:100%}}
-.ov{background:var(--navy);padding:64px 0;position:relative;overflow:hidden}
+.ov{background:var(--bg);padding:64px 0}
 .ovgrid{display:block}
-.ov h2,.ov h3,.ov .num{color:#fff}
-.ov .eyebrow,.ov p,.ov .bars span,.ov .bars b{color:#dbe3f5}
-.cells{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.25);border-left:1px solid rgba(255,255,255,.25);margin:28px 0}
-.cell{padding:28px;border-right:1px solid rgba(255,255,255,.25);border-bottom:1px solid rgba(255,255,255,.25)}
-.ov .bars i{background:#fff}
+.cells{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);margin:28px 0}
+.cell{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cell p{color:var(--mut);margin:0}
+.ov .bars{max-width:640px}
 .ov .bars{max-width:640px}
 @media(max-width:860px){
   html,body{overflow-x:hidden;max-width:100%}
