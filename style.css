@@ -49,8 +49,9 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .right{grid-column:3;grid-row:1;justify-self:end;display:flex;align-items:center;gap:4px}
 .soc{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;color:var(--ink)}
 .soc svg{width:32px;height:32px}
-.hero{padding:0}
-.hero img{display:block;width:100%;height:auto;max-height:calc(100vh - 110px);object-fit:cover}
+.hero{padding:0;background:var(--navy);display:flex;justify-content:flex-end}
+.hero img{display:block;width:66.667%;height:auto}
+@media(max-width:860px){.hero img{width:100%}}
 .ov{background:var(--navy);padding:64px 0;position:relative;overflow:hidden}
 .ovgrid{display:block}
 .ov h2,.ov h3,.ov .num{color:#fff}
