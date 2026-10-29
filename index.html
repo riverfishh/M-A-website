@@ -2,10 +2,8 @@
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2"></head><body data-page="home"><header id="hdr"></header><main>
-<section class="wrap"><p class="eyebrow">Nova SBE Mergers and Acquisitions Student Club</p><h1>Nova<br>M&amp;A Club</h1>
-<p class="lead">Nova SBE students interested in contributing to the Nova Community and diving deeper into the world of M&amp;A.</p>
-</section>
+<link rel="stylesheet" href="style.css?v=3"></head><body data-page="home"><header id="hdr"></header><main>
+<section class="hero"><img src="overview.jpg" alt="Nova M&amp;A Club members" onerror="this.parentNode.remove()"></section>
 <div id="home"></div>
 <section class="wrap"><h2>Explore</h2><div class="grid">
 <a class="card" href="papers.html"><h3>Research Papers</h3><p>Read and download papers from the club.</p></a>
@@ -29,7 +27,7 @@ const ch=[["Nova’s official board","Post with email alerts to all students"],[
 const oc=["We plan and manage all on-campus logistics","We organize case files, slides and pre-reads","We handle student sign-ups, Q&A and follow-up","We facilitate post-session interaction and feedback"];
 const ses=[["Location","Nova SBE Campus (Carcavelos), Zoom/Teams or Company’s HQ"],["Content","Company presentation / overview, with Q&A from students"],["Case Simulation","Mini-case with a live debrief and speaker feedback"],["Post-Session Activity","Networking (coffee or dinner)"]];
 $("#home").innerHTML=
-`<section class="ov"><div class="wrap ovgrid"><div><h2>Club Overview</h2><div class="cells">${stats.map(s=>`<div class="cell"><span class="num">${s[0]}</span><p>${esc(s[1])}</p></div>`).join("")}</div><div class="bars"><h3>Members by department</h3>${dep.map(d=>`<div><span>${d[0]}</span><i style="width:${d[1]/15*100}%"></i><b>${d[1]}</b></div>`).join("")}</div></div><div class="ovimg"><img src="overview.jpg" alt="Nova M&A Club" onerror="this.remove()"></div></div></section>`+
+`<section class="ov"><div class="wrap ovgrid"><div><h2>Club Overview</h2><div class="cells">${stats.map(s=>`<div class="cell"><span class="num">${s[0]}</span><p>${esc(s[1])}</p></div>`).join("")}</div><div class="bars"><h3>Members by department</h3>${dep.map(d=>`<div><span>${d[0]}</span><i style="width:${d[1]/15*100}%"></i><b>${d[1]}</b></div>`).join("")}</div></div></div></section>`+
 sec("Our Purpose & Structure",`<h3>Our Goals</h3>`+cards(goals,(g,i)=>`<div class="card"><span class="num">${i+1}</span><p>${esc(g)}</p></div>`)+`<h3 class="sub">Our History</h3>`+cards(hist,h=>`<div class="card"><span class="num">${h[0]}</span><p>${esc(h[1])}</p></div>`)+`<h3 class="sub">Our Structure</h3>`+cards(struct,s=>`<div class="card"><h3>${s[0]}</h3>${ul(s[1])}</div>`),"About us")+
 sec("Mission, Vision & Values",cards([["Mission","A student-driven M&A club committed to developing real-world deal-making skills through practical analysis, knowledge sharing, and professional networking."],["Vision","Empowering Nova SBE students to become future M&A leaders through real-world deal analysis and industry connection."],["Values","Integrity, analytical rigor, and a shared ambition to grow as leaders in finance. Driven by collaboration, curiosity and professionalism."]],m=>`<div class="card"><h3>${m[0]}</h3><p>${esc(m[1])}</p></div>`)+`<h3 class="sub">What drives us</h3>${["Integrity","Analytical rigor","Collaboration","Curiosity","Professionalism"].map(v=>`<span class="pill">${v}</span>`).join("")}`,"About us")+
 sec("Why partner with us?",cards(why,(w,i)=>`<div class="card"><span class="num">${i+1}</span><h3>${esc(w[0])}</h3>${ul(w[1])}</div>`),"Partnership")+
