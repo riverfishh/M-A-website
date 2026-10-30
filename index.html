@@ -2,37 +2,14 @@
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Archivo:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=10"></head><body data-page="home"><header id="hdr"></header><main>
+<link rel="stylesheet" href="style.css?v=11"></head><body data-page="home"><header id="hdr"></header><main>
 <section class="hero"><img src="photos.jpg" alt="Nova M&amp;A Club members" onerror="this.parentNode.remove()"><div class="herotxt"><h1>Nova M&amp;A Club</h1><p class="path">Unlock Your Future Path to M&amp;A</p></div></section>
 <div id="home"></div>
-<section class="wrap"><h2>Explore</h2><div class="grid">
-<a class="card" href="papers.html"><h3>Research Papers</h3><p>Read and download papers from the club.</p></a>
-<a class="card" href="gallery.html"><h3>Gallery</h3><p>Photographs from the club.</p></a></div></section>
 </main><footer id="ftr"></footer><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script><script src="config.js"></script><script src="common.js"></script>
 <script>
-const ul=a=>`<ul>${a.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
-const cards=(a,f)=>`<div class="grid">${a.map(f).join("")}</div>`;
-const sec=(t,b,e="")=>`<section class="wrap"><p class="eyebrow">${e}</p><h2>${t}</h2>${b}</section>`;
 const stats=[["37","Club Members"],["28","Master students out of 37 members"],["30%","Women of all club members"],["11","Nationalities"]];
 const dep=[["Research",15],["Operations",6],["Relations",6],["Marketing",3],["Legal",3],["Board",3]];
-const goals=["Bridge academic learning with real M&A practice","Create meaningful professional connections","Encourage collaboration and growth"];
-const hist=[["2023","Establishment of the M&A Club"],["2024","Consolidation of the Nova M&A Club brand"],["2025","Revival of the M&A Club"]];
-const struct=[["Research Department",["Monitoring M&A: updates, deals, and trends","Prepare pre-reads and post-event insights","Support partner identification and topic development"]],["Relations Department",["Coordinate scheduling and logistics","Manage promotion and registrations","Collect feedback and handle follow-up"]]];
-const why=[["Visibility & Reach",["Engage directly with Nova’s top students","Share insights with an active student audience","Participate in high-visibility events"]],["Talent Pipeline",["Meet motivated, M&A focused students","Spot promising candidates early","Build lasting connections"]],["Mutual Value Creation",["Co-create sessions that provide learning","Exchange real-world insights","Grow together through partnership"]]];
-const aud=[["27,000+","Alumni"],["120+","Nationalities"],["1,000+","Working cities"],["2,500+","New students every year"],["55%","International students"],["2,000+","Master’s students welcomed, from 70 nationalities"]];
-const ft=[["#2","International Master’s in Management in the world"],["#8","International Master’s in Finance in the world"],["#17","Business School in Europe"]];
-const proc=[["Fit Check","Quick alignment on goals, timing and audience","Preparation"],["Plan Content","Define case topic, date & format","Preparation"],["Launch Promotion","Approve visuals & publish across Nova channels","Preparation"],["Lock Logistics","We manage setup, materials & coordination","Preparation"],["Run Event","Company intro, case work & feedback session","Event"],["Wrap Up","Share results, feedback & next steps","Follow-up"]];
-const nxt=[["Mutual Goals","Shared objectives for the partnership"],["Date Window","Possible timing that works for both sides"],["Session Design","Discuss how an event could be organized"],["Target Audience","Student groups / programs to engage"],["Expected Outcome","Value created for partner and students"]];
-const ch=[["Nova’s official board","Post with email alerts to all students"],["Students’ Union Instagram","Story on the SU Instagram, 15k followers"],["Nova M&A Club Instagram","Event teaser + weekly reminders"],["WhatsApp groups","Direct reach to target programs"],["LinkedIn","Post-event photo tagging your team"]];
-const oc=["We plan and manage all on-campus logistics","We organize case files, slides and pre-reads","We handle student sign-ups, Q&A and follow-up","We facilitate post-session interaction and feedback"];
-const ses=[["Location","Nova SBE Campus (Carcavelos), Zoom/Teams or Company’s HQ"],["Content","Company presentation / overview, with Q&A from students"],["Case Simulation","Mini-case with a live debrief and speaker feedback"],["Post-Session Activity","Networking (coffee or dinner)"]];
 $("#home").innerHTML=
 `<section class="ov"><div class="wrap ovgrid"><div><h2>Club Overview</h2><div class="cells">${stats.map(s=>`<div class="cell"><span class="num">${s[0]}</span><p>${esc(s[1])}</p></div>`).join("")}</div><div class="bars"><h3>Members by department</h3>${dep.map(d=>`<div><span>${d[0]}</span><i style="width:${d[1]/15*100}%"></i><b>${d[1]}</b></div>`).join("")}</div></div></div></section>`+
-sec("Our Purpose & Structure",`<h3>Our Goals</h3>`+cards(goals,(g,i)=>`<div class="card"><span class="num">${i+1}</span><p>${esc(g)}</p></div>`)+`<h3 class="sub">Our History</h3>`+cards(hist,h=>`<div class="card"><span class="num">${h[0]}</span><p>${esc(h[1])}</p></div>`)+`<h3 class="sub">Our Structure</h3>`+cards(struct,s=>`<div class="card"><h3>${s[0]}</h3>${ul(s[1])}</div>`),"About us")+
-sec("Mission, Vision & Values",cards([["Mission","A student-driven M&A club committed to developing real-world deal-making skills through practical analysis, knowledge sharing, and professional networking."],["Vision","Empowering Nova SBE students to become future M&A leaders through real-world deal analysis and industry connection."],["Values","Integrity, analytical rigor, and a shared ambition to grow as leaders in finance. Driven by collaboration, curiosity and professionalism."]],m=>`<div class="card"><h3>${m[0]}</h3><p>${esc(m[1])}</p></div>`)+`<h3 class="sub">What drives us</h3>${["Integrity","Analytical rigor","Collaboration","Curiosity","Professionalism"].map(v=>`<span class="pill">${v}</span>`).join("")}`,"About us")+
-sec("Why partner with us?",cards(why,(w,i)=>`<div class="card"><span class="num">${i+1}</span><h3>${esc(w[0])}</h3>${ul(w[1])}</div>`),"Partnership")+
-sec("Audience Snapshot",`<h3>Nova Community</h3>`+cards(aud,a=>`<div class="card"><span class="num">${a[0]}</span><p>${esc(a[1])}</p></div>`)+`<h3 class="sub">Financial Times rankings</h3>`+cards(ft,a=>`<div class="card dark"><span class="num">${a[0]}</span><p>${esc(a[1])}</p></div>`)+`<p class="note">Source: novasbe.unl.pt, October 2026</p>`,"Partnership")+
-sec("Six-step process to plan and run the partnership",`<p class="meta">Workshop example</p>`+cards(proc,(p,i)=>`<div class="card step"><small>${p[2]} · ${i+1}</small><h3>${esc(p[0])}</h3><p>${esc(p[1])}</p></div>`),"Partnership")+
-sec("Next Steps: Let’s Explore Together",`<p class="lead">In our initial call we would like to discuss these points:</p>`+cards(nxt,(n,i)=>`<div class="card"><small>0${i+1}</small><h3>${esc(n[0])}</h3><p>${esc(n[1])}</p></div>`),"Partnership")+
-sec("Events & Workshops with us",`<h3>Promotion Channels</h3>`+cards(ch,c=>`<div class="card"><h3>${esc(c[0])}</h3><p>${esc(c[1])}</p></div>`)+`<div class="card dark sub"><h3>On-Campus Events</h3>${ul(oc)}</div><h3 class="sub">What a session might look like</h3>`+cards(ses,(s,i)=>`<div class="card"><span class="num">${i+1}</span><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p></div>`),"Events");
+`<section class="depts"><div class="wrap"><h2>Our Departments</h2></div></section>`;
 </script></body></html>
