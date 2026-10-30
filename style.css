@@ -1,7 +1,7 @@
 :root{--bg:#FFFFFF;--navy:#00337A;--tint:#E4E8F3;--ink:#1c2740;--mut:#5b6785;--line:#dde1ea}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Open Sans",system-ui,sans-serif}
-h1,h2,h3{font-family:"Playfair Display",Georgia,serif;color:var(--navy);line-height:1.15;margin:0 0 .5em}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Rubik",system-ui,sans-serif}
+h1,h2,h3{font-family:"Rubik",system-ui,sans-serif;color:var(--navy);line-height:1.15;margin:0 0 .5em}
 h1{font-size:clamp(2.6rem,6vw,4.6rem)}h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}h3{font-size:1.25rem}
 a{color:var(--navy)}:focus-visible{outline:3px solid #2F5BFF;outline-offset:2px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}section{padding:72px 0}
@@ -23,7 +23,7 @@ nav a:hover,nav a[aria-current=page]{background:var(--tint);color:#2F5BFF}
 a.card{text-decoration:none;color:inherit;display:block}
 .card ul{padding-left:18px;margin:0;color:var(--mut)}.card p{color:var(--mut);margin:0}
 .dark{background:var(--navy);color:#fff;border-color:var(--navy)}.dark h3,.dark .num{color:#fff}.dark p{color:#dbe3f5}.dark:hover{background:var(--navy)}
-.num{font:700 2.8rem "Playfair Display",serif;color:var(--navy);display:block;line-height:1.1}
+.num{font:700 2.8rem "Rubik",system-ui,sans-serif;color:var(--navy);display:block;line-height:1.1}
 .bars div{display:grid;grid-template-columns:100px 1fr 30px;gap:10px;align-items:center;margin:8px 0}.bars i{display:block;height:14px;background:var(--navy);border-radius:4px}
 .pill{display:inline-block;background:var(--tint);color:var(--navy);padding:6px 16px;border-radius:99px;font-weight:600;margin:0 8px 8px 0}
 .step small{color:#2F5BFF;font-weight:700}
@@ -69,9 +69,9 @@ nav{grid-column:1;grid-row:1;justify-self:start}
   .soc svg{width:24px;height:24px}
 }
 .hero{position:relative}
-.herotxt{position:absolute;left:0;top:50%;transform:translateY(-50%);padding:0 clamp(24px,8vw,80px);z-index:2}
-.herotxt h1{color:#fff;font-size:clamp(2.8rem,9vw,9rem);line-height:1.05;margin:0 0 .3em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
-.herotxt .path{color:#fff;font:600 clamp(1.3rem,5vw,2.8rem)/1.1 "Playfair Display",Georgia,serif;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.herotxt{position:absolute;left:0;top:0;padding:clamp(20px,4vw,48px) clamp(20px,4vw,48px) 0;z-index:2}
+.herotxt h1{color:#fff;font-size:clamp(2.8rem,9vw,9rem);line-height:1;margin:0 0 .15em;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+.herotxt .path{color:#fff;font:500 clamp(1.3rem,4vw,2.4rem)/1.15 "Rubik",system-ui,sans-serif;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.55)}
 @media(max-width:860px){.hero{flex-direction:column-reverse}.herotxt{position:static;transform:none;padding:28px 24px}.herotxt h1{font-size:clamp(2rem,9vw,3rem);text-shadow:none}.herotxt .path{text-shadow:none}}
 
 /* Desktop: hero photo fills exactly the screen below the sticky header (no scrolling to see all of it) */
