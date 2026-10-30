@@ -80,7 +80,7 @@ nav{grid-column:1;grid-row:1;justify-self:start}
   .hero{height:calc(100vh - var(--hdr-h));height:calc(100svh - var(--hdr-h));min-height:420px;overflow:hidden}
   .hero img{height:100%;object-fit:cover;object-position:center 5%}
   /* words at the bottom-left of the photo, tagline above the title */
-  .herotxt{display:flex;flex-direction:column}
+  .herotxt{display:flex;flex-direction:column;padding-top:8px}
   .herotxt h1{margin:0 0 .15em}
 }
 
