@@ -74,9 +74,14 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .herotxt .path{color:#fff;font:700 clamp(1.3rem,4vw,2.4rem)/1.15 "Univers Condensed","Univers LT Std","Univers","Archivo",system-ui,sans-serif;margin:0;text-shadow:0 2px 14px rgba(0,0,0,.55)}
 @media(max-width:860px){.hero{flex-direction:column-reverse}.herotxt{position:static;transform:none;padding:28px 24px}.herotxt h1{font-size:clamp(2rem,9vw,3rem);text-shadow:none}.herotxt .path{text-shadow:none}}
 
-/* Desktop: hero photo fills exactly the screen below the sticky header (no scrolling to see all of it) */
+/* Desktop: photo takes up 2/3 of the screen width, sits on the right and is shown whole (no zoom or crop),
+   never taller than the space under the header. The title sits at the bottom of the photo. */
 @media(min-width:861px){
   :root{--hdr-h:109px}
-  .hero{height:calc(100vh - var(--hdr-h));height:calc(100svh - var(--hdr-h));min-height:420px;overflow:hidden}
-  .hero img{height:100%;object-fit:cover;object-position:center 35%}
+  .hero{display:flex;justify-content:flex-end;align-items:center;height:calc(100vh - var(--hdr-h));height:calc(100svh - var(--hdr-h))}
+  .heropic{position:relative;container-type:inline-size;width:min(66.667vw,calc((100vh - var(--hdr-h))*1.6899));width:min(66.667vw,calc((100svh - var(--hdr-h))*1.6899))}
+  .hero img{width:100%;height:auto}
+  .herotxt{top:auto;bottom:0;left:0;padding:0 4cqw 3.5cqw}
+  .herotxt h1{font-size:5vw;font-size:8cqw;-webkit-text-stroke:.05em #000;paint-order:stroke fill;text-shadow:none;margin:0 0 .1em}
+  .herotxt .path{font-size:2vw;font-size:3cqw}
 }
