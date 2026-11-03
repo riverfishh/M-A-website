@@ -98,7 +98,8 @@ nav{grid-column:1;grid-row:1;justify-self:start}
 .depts h2{color:#fff;margin:0 0 .6em}
 .deptgrid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .depttxt p{color:#dbe3f5;font-size:1.05rem;line-height:1.7;margin:0 0 1.6em;max-width:60ch}
-.deptpic{aspect-ratio:4/3;width:100%;border:2px dashed rgba(255,255,255,.35);border-radius:14px;background:rgba(255,255,255,.06)}
+.deptpic{aspect-ratio:4/3;width:100%;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.06);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.deptpic img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .viewmore{display:inline-block;padding:12px 28px;border-radius:999px;background:#fff;color:var(--navy);font-weight:600;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
 .viewmore:hover,.viewmore:focus-visible{transform:scale(1.12);box-shadow:0 6px 18px rgba(0,0,0,.3)}
 @media(prefers-reduced-motion:reduce){.viewmore{transition:none}}
